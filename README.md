@@ -15,9 +15,9 @@ El proyecto cuenta con la colaboración de:
 - **Kevin Albendea** (@KevinAlbendea)
 
 ## 📋 IPS MÁQUINAS:
-- **Maquina Kevin** : 192.168.68.1
-- **Maquina Santi** : 192.168.100.20
-- **Maquina Javi** :
+- **Maquina Kevin** : 10.0.140.26
+- **Maquina Santi** : 10.0.140.40
+- **Maquina Javi** : 10.0.140.33
 - **Maquina Iñaki** :
 
 ## 📋 Ejercicios Completados
