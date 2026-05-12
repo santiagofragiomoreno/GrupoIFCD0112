@@ -1,0 +1,29 @@
+==========================================
+SANTI: Procesando comanda de Kevin...
+Plato:  | Bebida: 
+Fecha: mar 12 may 2026 12:30:54 CEST
+==========================================
+==========================================
+SANTI: Procesando comanda de Kevin...
+Plato: 3 | Bebida: Agua
+Fecha: mar 12 may 2026 12:36:12 CEST
+==========================================
+==========================================
+SANTI: Procesando comanda de Kevin...
+Plato: 1 | Bebida: Coca-Cola
+Fecha: mar 12 may 2026 12:38:30 CEST
+==========================================
+--- PEDIDO RECIBIDO ---
+De: Kevin | Plato: 2 | Bebida: Cerveza
+Hora: 12:46:19
+-----------------------
+--- PEDIDO RECIBIDO ---
+De: Kevin | Plato: 4 | Bebida: Agua
+Hora: 12:54:16
+-----------------------
+------------------------------------------
+PEDIDO RECIBIDO A LAS 13:09:49
+CLIENTE: Kevin
+PLATO:   1
+BEBIDA:  Agua
+------------------------------------------
