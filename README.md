@@ -14,6 +14,12 @@ El proyecto cuenta con la colaboración de:
 - **Maki** (@makitest86-stack)
 - **Kevin Albendea** (@KevinAlbendea)
 
+## 📋 IPS MÁQUINAS:
+- **Maquina Kevin** : 192.168.68.1
+- **Maquina Santi** : 192.168.100.20
+- **Maquina Javi** :
+- **Maquina Iñaki** :
+
 ## 📋 Ejercicios Completados
 
 ### Ejercicios de Lógica — Pseudocódigo sin Computador
