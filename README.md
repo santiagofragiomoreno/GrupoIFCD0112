@@ -16,7 +16,7 @@ El proyecto cuenta con la colaboración de:
 
 ## 📋 IPS MÁQUINAS:
 - **Maquina Kevin** : 192.168.68.1
-- **Maquina Santi** :
+- **Maquina Santi** : 192.168.100.20
 - **Maquina Javi** :
 - **Maquina Iñaki** :
 
