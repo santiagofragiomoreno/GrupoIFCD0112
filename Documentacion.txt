@@ -17,6 +17,7 @@ por un servidor central y notificados automáticamente a una cocina.
 - SERVIDOR CENTRAL (Santi): 10.0.140.40 (Usuario: santiagofragio)
 - CLIENTE (Kevin):          10.0.140.26 (Usuario: kevin)
 - COCINA (Javi):            10.0.140.33 (Usuario: javier)
+- REPARTIDOR (Iñaki):       10.0.140.31 (usuario: makitest86)
 
 Configuración técnica: Adaptador Puente (Bridge) en VirtualBox.
 Seguridad: Autenticación mediante llaves SSH (Ed25519) sin contraseña.
