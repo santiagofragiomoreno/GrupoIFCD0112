@@ -7,7 +7,7 @@ echo "Conectando con el restaurante para ver la carta..."
 sleep 1
 
 # 1. Kevin pide la carta de tu máquina y la muestra en SU pantalla
-ssh $RESTAURANTE "cat /home/santiagofragio/sync_curso/sfm_poo/GrupoIFCD0112/MaquinaCliente/carta.txt"
+ssh $RESTAURANTE "cat /home/santiagofragio/sync_curso/sfm_poo/GrupoIFCD0112/MaquinaRestaurante/carta.txt"
 
 # 2. Kevin elige
 echo ""
@@ -16,4 +16,4 @@ read -p "¿Y de beber? " bebida
 
 # 3. Kevin envía el pedido a tu script central
 echo "Enviando pedido..."
-ssh $RESTAURANTE "/home/santiagofragio/sync_curso/sfm_poo/GrupoIFCD0112/MaquinaCliente/procesarpedido.sh '$plato' '$bebida'"
+ssh $RESTAURANTE "/home/santiagofragio/sync_curso/sfm_poo/GrupoIFCD0112/MaquinaRestaurante/procesarpedido.sh '$plato' '$bebida'"
