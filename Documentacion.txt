@@ -1,0 +1,122 @@
+===========================================================================
+PROYECTO: SISTEMA DE GESTIÓN DE RESTAURANTE DISTRIBUIDO "CASA SANTI"
+FECHA: 12 de Mayo de 2026
+AUTOR: Santiago Fragio
+SISTEMA OPERATIVO: Ubuntu 22.04 / 24.04 (VirtualBox)
+===========================================================================
+
+1. DESCRIPCIÓN DEL SISTEMA
+--------------------------
+El proyecto implementa un flujo de trabajo distribuido entre tres máquinas
+virtuales independientes. Utiliza SSH para la comunicación y ejecución
+remota, permitiendo que un cliente realice pedidos que son procesados
+por un servidor central y notificados automáticamente a una cocina.
+
+2. ARQUITECTURA DE RED (SEGMENTO 10.0.140.x)
+--------------------------------------------
+- SERVIDOR CENTRAL (Santi): 10.0.140.40 (Usuario: santiagofragio)
+- CLIENTE (Kevin):          10.0.140.26 (Usuario: kevin)
+- COCINA (Javi):            10.0.140.33 (Usuario: javier)
+- REPARTIDOR (Iñaki):       10.0.140.31 (usuario: makitest86)
+
+Configuración técnica: Adaptador Puente (Bridge) en VirtualBox.
+Seguridad: Autenticación mediante llaves SSH (Ed25519) sin contraseña.
+
+3. ESTRUCTURA DE ARCHIVOS Y RUTAS
+---------------------------------
+
+A. EN EL SERVIDOR (Santi)
+Ubicación: /home/santiagofragio/sync_curso/sfm_poo/GrupoIFCD0112/MaquinaCliente/
+
+   - carta.txt (Archivo de datos del menú)
+   - procesarpedido.sh (Script de lógica central)
+   - pedidos.log (Historial de ventas acumulado)
+
+B. EN EL CLIENTE (Kevin)
+Ubicación: /home/kevin/
+
+   - pedir.sh (Script de interacción del usuario)
+
+C. EN LA COCINA (Javi)
+Ubicación: /home/javier/
+
+   - pedidos_cocina.log (Monitor de recepción en tiempo real)
+
+4. CÓDIGO DE LOS SCRIPTS
+------------------------
+
+--- ARCHIVO: carta.txt (Servidor) ---
+=========================================
+          MENÚ CASA SANTI
+=========================================
+1. Pizza Carbonara ........ 12€
+2. Hamburguesa Especial .... 10€
+3. Pasta Boloñesa ..........  9€
+4. Ensalada César ..........  8€
+-----------------------------------------
+Bebidas: Coca-Cola, Cerveza, Agua
+=========================================
+
+--- ARCHIVO: procesarpedido.sh (Servidor) ---
+#!/bin/bash
+LOG_LOCAL="/home/santiagofragio/sync_curso/sfm_poo/GrupoIFCD0112/MaquinaCliente/pedidos.log"
+IP_COCINA="10.0.140.33"
+USER_COCINA="javier"
+
+PLATO=$1
+BEBIDA=$2
+HORA=$(date "+%H:%M:%S")
+
+# Registro en Log local
+{
+  echo "------------------------------------------"
+  echo "PEDIDO RECIBIDO A LAS $HORA"
+  echo "CLIENTE: Kevin | PLATO: $PLATO | BEBIDA: $BEBIDA"
+  echo "------------------------------------------"
+} >> "$LOG_LOCAL"
+
+# Envío remoto a Cocina
+ssh "$USER_COCINA@$IP_COCINA" "echo '[$HORA] 👨‍🍳 NUEVA COMANDA: $PLATO con $BEBIDA' >> ~/pedidos_cocina.log"
+
+# Respuesta al cliente
+echo "✅ Santi: Pedido recibido y enviado a la cocina de Javi."
+
+
+--- ARCHIVO: pedir.sh (Cliente) ---
+#!/bin/bash
+SANTI="santiagofragio@10.0.140.40"
+RUTA_SRV="/home/santiagofragio/sync_curso/sfm_poo/GrupoIFCD0112/MaquinaCliente"
+
+clear
+echo "--- BIENVENIDO A CASA SANTI ---"
+# Consultar carta remota
+ssh $SANTI "cat $RUTA_SRV/carta.txt"
+
+echo ""
+read -p "¿Qué plato desea? " plato
+read -p "¿Qué bebida desea? " bebida
+
+echo -e "\nEnviando pedido..."
+# Ejecutar lógica en el servidor
+ssh $SANTI "$RUTA_SRV/procesarpedido.sh '$plato' '$bebida'"
+
+
+5. PROCEDIMIENTO DE OPERACIÓN
+------------------------------
+1. El Servidor (Santi) monitoriza con: tail -f pedidos.log
+2. La Cocina (Javi) monitoriza con:   tail -f pedidos_cocina.log
+3. El Cliente (Kevin) realiza el pedido ejecutando: ./pedir.sh
+
+6. GESTIÓN DE VERSIONES (GIT)
+-----------------------------
+Comandos para mantener la ramaSantiagoFragio actualizada con el Main de GitHub:
+
+1. git checkout main
+2. git pull origin main
+3. git checkout ramaSantiagoFragio
+4. git merge main
+5. git push origin ramaSantiagoFragio
+
+===========================================================================
+FIN DEL DOCUMENTO
+===========================================================================
