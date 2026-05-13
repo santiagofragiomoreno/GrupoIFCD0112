@@ -18,7 +18,7 @@ El proyecto cuenta con la colaboración de:
 - **Maquina Kevin** : 10.0.140.26
 - **Maquina Santi** : 10.0.140.40
 - **Maquina Javi** : 10.0.140.33
-- **Maquina Iñaki** :
+- **Maquina Iñaki** : 10.0.140.31
 
 ## 📋 Ejercicios Completados
 
